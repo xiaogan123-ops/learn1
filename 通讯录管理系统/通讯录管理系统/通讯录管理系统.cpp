@@ -7,16 +7,16 @@ using namespace std;
 string H = " xiaogan";
 string H1 = "123456";
 typedef struct student {
-	string  name;//Ãû×Ö
-	string numble;//Ñ§ºÅ
-	int sex;    //ĞÔ±ğ  1ÄĞ  2Å®
-	string  a;  //Éí·İÖ¤
-	string phone;   //µç»°  
-	string home;//×¡Ö·
+	string  name;//åå­—
+	string numble;//å­¦å·
+	int sex;    //æ€§åˆ«  1ç”·  2å¥³
+	string  a;  //èº«ä»½è¯
+	string phone;   //ç”µè¯  
+	string home;//ä½å€
 }stu;
 struct addressbooks {
 	stu student[max];
-	int sum = 0;//¼ÇÂ¼µ±Ç°Í¨Ñ¶Â¼ÈËÊı
+	int sum = 0;//è®°å½•å½“å‰é€šè®¯å½•äººæ•°
 };
 int  exist(addressbooks* abs, string name) {
 	for (int i = 0; i < abs->sum; i++) {
@@ -28,49 +28,49 @@ int  exist(addressbooks* abs, string name) {
 }
 void addstudent(addressbooks* abs) {
 	if (abs->sum == max) {
-		cout << "Í¨Ñ¶Â¼ÒÑÂú" << endl;
+		cout << "é€šè®¯å½•å·²æ»¡" << endl;
 		return;
 	}
 	else {
 		string  name, numble, phone, home, a;
 		int sex, t = 0;
-		cout << "ÇëÊäÈëÃû×Ö" << endl;
+		cout << "è¯·è¾“å…¥åå­—" << endl;
 		cin >> name;
 		t = exist(abs, name);
 		if (t == -1) {
 			abs->student[abs->sum].name = name;
-			cout << "ÇëÊäÈëÑ§ºÅ" << endl;
+			cout << "è¯·è¾“å…¥å­¦å·" << endl;
 			cin >> numble;
 			abs->student[abs->sum].numble = numble;
-			cout << "ÇëÊäÈëĞÔ±ğ" << endl;
-			cout << " 1 £º  ÄĞ    £¬  2£º    Å®   " << endl;
+			cout << "è¯·è¾“å…¥æ€§åˆ«" << endl;
+			cout << " 1 ï¼š  ç”·    ï¼Œ  2ï¼š    å¥³   " << endl;
 			while (1) {
 				cin >> sex;
 				if (sex == 1 || sex == 2) {
 					abs->student[abs->sum].sex = sex;
 					break;
 				}
-				else cout << "ÊäÈëÓĞÎó£¬ÖØĞÂÊäÈë" << endl;
+				else cout << "è¾“å…¥æœ‰è¯¯ï¼Œé‡æ–°è¾“å…¥" << endl;
 			}
-			cout << "ÇëÊäÈëÉí·İÖ¤" << endl;
+			cout << "è¯·è¾“å…¥èº«ä»½è¯" << endl;
 			cin >> a;
 			abs->student[abs->sum].a = a;
 
-			cout << "ÇëÊäÈëµç»°" << endl;
+			cout << "è¯·è¾“å…¥ç”µè¯" << endl;
 			cin >> phone;
 			abs->student[abs->sum].phone = phone;
 
-			cout << "ÇëÊäÈë×¡Ö·" << endl;
+			cout << "è¯·è¾“å…¥ä½å€" << endl;
 			cin >> home;
 			abs->student[abs->sum].home = home;
 
 			abs->sum++;
-			cout << "Ìí¼Ó³É¹¦" << endl;
+			cout << "æ·»åŠ æˆåŠŸ" << endl;
 			system("pause");
-			system("cls");//ÇåÆÁ²Ù×÷
+			system("cls");//æ¸…å±æ“ä½œ
 		}
 		else {
-			cout << "ĞÅÏ¢ÒÑ´æÔÚ" << endl;
+			cout << "ä¿¡æ¯å·²å­˜åœ¨" << endl;
 			system("pause");
 			system("cls");
 		}
@@ -78,23 +78,23 @@ void addstudent(addressbooks* abs) {
 }
 void showstudent(addressbooks* abs) {
 	if (abs->sum == 0) {
-		cout << "´ËÊ±Í¨Ñ¶Â¼Îª¿Õ" << endl;
+		cout << "æ­¤æ—¶é€šè®¯å½•ä¸ºç©º" << endl;
 	}
 	else {
 		for (int i = 0; i < abs->sum; i++) {
-			cout << "Ãû×Ö:  " << abs->student[i].name << "\t";
-			cout << "Ñ§ºÅ:  " << abs->student[i].numble << "\t";
-			cout << "ĞÔ±ğ:  " << (abs->student[i].sex == 1 ? "ÄĞ" : "Å®") << "\t";
-			cout << "Éí·İÖ¤:  " << abs->student[i].a << "\t";
-			cout << "µç»°:  " << abs->student[i].phone << "\t";
-			cout << "×¡Ö·:  " << abs->student[i].home << endl;
+			cout << "åå­—:  " << abs->student[i].name << "\t";
+			cout << "å­¦å·:  " << abs->student[i].numble << "\t";
+			cout << "æ€§åˆ«:  " << (abs->student[i].sex == 1 ? "ç”·" : "å¥³") << "\t";
+			cout << "èº«ä»½è¯:  " << abs->student[i].a << "\t";
+			cout << "ç”µè¯:  " << abs->student[i].phone << "\t";
+			cout << "ä½å€:  " << abs->student[i].home << endl;
 		}
 	}
 	system("pause");
 	system("cls");
 }
 void  modify(addressbooks* abs) {
-	cout << "ÇëÊäÈëÒªĞŞ¸ÄµÄÁªÏµÈËÃû×Ö»òÕßÑ§ºÅ" << endl;
+	cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„è”ç³»äººåå­—æˆ–è€…å­¦å·" << endl;
 	string name;
 	cin >> name;
 	int t;
@@ -102,53 +102,53 @@ void  modify(addressbooks* abs) {
 	if (t != -1) {
 		string  name1, numble, phone, home, a;
 		int sex;
-		cout << "ÇëÊäÈëÃû×Ö" << endl;
+		cout << "è¯·è¾“å…¥åå­—" << endl;
 		cin >> name1;
 		abs->student[t].name = name1;
-		cout << "ÇëÊäÈëÑ§ºÅ" << endl;
+		cout << "è¯·è¾“å…¥å­¦å·" << endl;
 		cin >> numble;
 		abs->student[t].numble = numble;
-		cout << "ÇëÊäÈëĞÔ±ğ" << endl;
-		cout << " 1 £º  ÄĞ    £¬  2£º    Å®   " << endl;
+		cout << "è¯·è¾“å…¥æ€§åˆ«" << endl;
+		cout << " 1 ï¼š  ç”·    ï¼Œ  2ï¼š    å¥³   " << endl;
 		while (1) {
 			cin >> sex;
 			if (sex == 1 || sex == 2) {
 				abs->student[t].sex = sex;
 				break;
 			}
-			else cout << "ÊäÈëÓĞÎó£¬ÖØĞÂÊäÈë" << endl;
+			else cout << "è¾“å…¥æœ‰è¯¯ï¼Œé‡æ–°è¾“å…¥" << endl;
 		}
-		cout << "ÇëÊäÈëÉí·İÖ¤" << endl;
+		cout << "è¯·è¾“å…¥èº«ä»½è¯" << endl;
 		cin >> a;
 		abs->student[t].a = a;
-		cout << "ÇëÊäÈëµç»°" << endl;
+		cout << "è¯·è¾“å…¥ç”µè¯" << endl;
 		cin >> phone;
 		abs->student[t].phone = phone;
-		cout << "ÇëÊäÈë×¡Ö·" << endl;
+		cout << "è¯·è¾“å…¥ä½å€" << endl;
 		cin >> home;
 		abs->student[t].home = home;
-		cout << "ĞŞ¸Ä³É¹¦" << endl;
+		cout << "ä¿®æ”¹æˆåŠŸ" << endl;
 		system("pause");
-		system("cls");//ÇåÆÁ²Ù×÷
+		system("cls");//æ¸…å±æ“ä½œ
 	}
 	else {
-		cout << "²éÎŞ´ËÈË" << endl;
+		cout << "æŸ¥æ— æ­¤äºº" << endl;
 		system("puase");
 		system("cls");
 	}
 }
 void clean(addressbooks* abs) {
-	cout << "ÊÇ·ñÒªÇå¿Õ£¬ÊÇÊäÈë£º 1   £¬·ñÊäÈë£º 2   ¡£" << endl;
+	cout << "æ˜¯å¦è¦æ¸…ç©ºï¼Œæ˜¯è¾“å…¥ï¼š 1   ï¼Œå¦è¾“å…¥ï¼š 2   ã€‚" << endl;
 	int t;
 	cin >> t;
 	while (1) {
 		if (t == 1) {
-			cout << "ÒÑÇå¿ÕÍ¨Ñ¶Â¼" << endl;
+			cout << "å·²æ¸…ç©ºé€šè®¯å½•" << endl;
 			abs->sum = 0;
 			break;
 		}
 		else {
-			cout << "ÊäÈëÓĞÎó£¬ÖØĞÂÊäÈë" << endl;
+			cout << "è¾“å…¥æœ‰è¯¯ï¼Œé‡æ–°è¾“å…¥" << endl;
 			cin >> t;
 		}
 	}
@@ -156,19 +156,19 @@ void clean(addressbooks* abs) {
 	system("cls");
 }
 void Showmenu1() {
-	cout << "1:   ¹ÜÀíÔ±µÇÂ¼" << endl;
-	cout << "2:   Ñ§ÉúµÇÂ¼" << endl;
-	cout << "0:   ÍË³öµÇÂ¼" << endl;
+	cout << "1:   ç®¡ç†å‘˜ç™»å½•" << endl;
+	cout << "2:   å­¦ç”Ÿç™»å½•" << endl;
+	cout << "0:   é€€å‡ºç™»å½•" << endl;
 }
 int examine() {
 	string s;
 	string s1;
 	char key;
 	int i=0;
-	cout << "ÓÃ»§Ãû£º ";
+	cout << "ç”¨æˆ·åï¼š ";
 	cin >> s;
 	getchar();
-	cout << "ÃÜÂë£º ";
+	cout << "å¯†ç ï¼š ";
 	while ((key = _getch()) != '\r') {
 		s1[i++] = key;
 		putchar('*');
@@ -180,15 +180,15 @@ int examine() {
 	
 }
 void Showmenu() {
-	cout << " 1 Ìí¼ÓÑ§ÉúĞÅÏ¢" << endl;
-	cout << " 2 ÏÔÊ¾Ñ§ÉúĞÅÏ¢" << endl;
-	cout << " 3 É¾³ıÑ§ÉúĞÅÏ¢" << endl;
-	cout << " 4 ĞŞ¸ÄÑ§ÉúĞÅÏ¢" << endl;
-	cout << " 5 Çå¿ÕÑ§ÉúĞÅÏ¢" << endl;
-	cout << " 0 ÍË³öÍ¨Ñ¶Â¼" << endl;
+	cout << " 1 æ·»åŠ å­¦ç”Ÿä¿¡æ¯" << endl;
+	cout << " 2 æ˜¾ç¤ºå­¦ç”Ÿä¿¡æ¯" << endl;
+	cout << " 3 åˆ é™¤å­¦ç”Ÿä¿¡æ¯" << endl;
+	cout << " 4 ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯" << endl;
+	cout << " 5 æ¸…ç©ºå­¦ç”Ÿä¿¡æ¯" << endl;
+	cout << " 0 é€€å‡ºé€šè®¯å½•" << endl;
 }
 void setwindow() {
-	system(" title  ÕËºÅµÇÂ¼");
+	system(" title  è´¦å·ç™»å½•");
 	system("color f0");
 }
 int main() {
@@ -206,12 +206,12 @@ int main() {
 			while (1) {
 				n = examine();
 				if (n == 1) {
-					cout << "µÇÂ¼³É¹¦" << endl;
+					cout << "ç™»å½•æˆåŠŸ" << endl;
 					system("pause");
 					break;
 				}
 				else {
-					cout << "ÕËºÅ»òÃÜÂëÓĞÎó" << endl;
+					cout << "è´¦å·æˆ–å¯†ç æœ‰è¯¯" << endl;
 					system("pause");
 					system("cls");
 				}
@@ -225,16 +225,16 @@ int main() {
 				switch (k)
 				{
 
-				case 1://Ìí¼Ó
+				case 1://æ·»åŠ 
 
 					addstudent(&abs);
 					break;
-				case 2://ÏÔÊ¾
+				case 2://æ˜¾ç¤º
 					showstudent(&abs);
 					break;
-				case 3://É¾³ı
+				case 3://åˆ é™¤
 				{	string  s;
-				cout << "ÇëÊäÈëÃû×Ö»òÕßÑ§ºÅ" << endl;
+				cout << "è¯·è¾“å…¥åå­—æˆ–è€…å­¦å·" << endl;
 				cin >> s;
 				int other;
 				if (exist(&abs, s) != -1) {
@@ -247,25 +247,25 @@ int main() {
 					system("cls");
 				}
 				else {
-					cout << "²éÎŞ´ËÈË" << endl;
+					cout << "æŸ¥æ— æ­¤äºº" << endl;
 					system("pause");
 					system("cls");
 				}
 				}
 				break;
 
-				case 4://ĞŞ¸Ä
+				case 4://ä¿®æ”¹
 					modify(&abs);
 					break;
-				case 5://Çå¿Õ
+				case 5://æ¸…ç©º
 					clean(&abs);
 					break;
-				case 0:   cout << "»¶Ó­ÏÂ´ÎÔÙÓÃ" << endl;
+				case 0:   cout << "æ¬¢è¿ä¸‹æ¬¡å†ç”¨" << endl;
 					system("pause");
 					making = 1;
 					break;
 				default:
-					cout << "Ã»ÓĞ´ËÑ¡Ïî£¬ÖØĞÂÊäÈë" << endl;
+					cout << "æ²¡æœ‰æ­¤é€‰é¡¹ï¼Œé‡æ–°è¾“å…¥" << endl;
 					system("puase");
 					break;
 				}
@@ -280,29 +280,29 @@ int main() {
 			{
 				int k;
 				string name;
-				cout << "ÇëÊäÈëÃû×Ö»òÕßÑ§ºÅ" << endl;
+				cout << "è¯·è¾“å…¥åå­—æˆ–è€…å­¦å·" << endl;
 				cin >> name;
 				if (exist(&abs, name) != -1) {
 					k = exist(&abs, name);
-					cout << "Ãû×Ö:  " << abs.student[k].name << "\t";
-					cout << "Ñ§ºÅ:  " << abs.student[k].numble << "\t";
-					cout << "ĞÔ±ğ:  " << (abs.student[k].sex == 1 ? "ÄĞ" : "Å®") << "\t";
-					cout << "Éí·İÖ¤:  " << abs.student[k].a << "\t";
-					cout << "µç»°:  " << abs.student[k].phone << "\t";
-					cout << "×¡Ö·:  " << abs.student[k].home << endl;
+					cout << "åå­—:  " << abs.student[k].name << "\t";
+					cout << "å­¦å·:  " << abs.student[k].numble << "\t";
+					cout << "æ€§åˆ«:  " << (abs.student[k].sex == 1 ? "ç”·" : "å¥³") << "\t";
+					cout << "èº«ä»½è¯:  " << abs.student[k].a << "\t";
+					cout << "ç”µè¯:  " << abs.student[k].phone << "\t";
+					cout << "ä½å€:  " << abs.student[k].home << endl;
 				}
-				else cout << "²éÎŞ´ËÈË" << endl;
+				else cout << "æŸ¥æ— æ­¤äºº" << endl;
 				system("pause");
 				system("cls");
 			}
 			break;
 		}
 		case 0:
-			cout << "Ğ»Ğ»Ê¹ÓÃ" << endl;
+			cout << "è°¢è°¢ä½¿ç”¨" << endl;
 			system("pause");
 			break;
 		default:
-			cout << "ÊäÈëÓĞÎó£¬ÖØĞÂÊäÈë" << endl;
+			cout << "è¾“å…¥æœ‰è¯¯ï¼Œé‡æ–°è¾“å…¥" << endl;
 			system("pause");
 			break;
 		}
