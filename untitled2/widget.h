@@ -130,6 +130,13 @@ private:
        bool m_hasTriggeredKite = false; // 防止重复触发
        void triggerWoodenKiteEvent();
 
+        QPoint m_props; // 终点路径位置
+       QPoint m_book;//书竹
+        bool is_bookCollected;
+
+       QPoint m_monster_1;//怪物
+       QPoint m_montser_tow;
+       bool is_monster_n;
 
 
 signals:

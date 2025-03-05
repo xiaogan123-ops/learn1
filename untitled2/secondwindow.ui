@@ -106,10 +106,10 @@
    <widget class="QPushButton" name="btu3">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>70</x>
       <y>50</y>
-      <width>111</width>
-      <height>71</height>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -148,10 +148,10 @@
    <widget class="QPushButton" name="btu5">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>340</x>
       <y>50</y>
-      <width>111</width>
-      <height>71</height>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -190,10 +190,10 @@
    <widget class="QPushButton" name="btu8">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>140</y>
-      <width>111</width>
-      <height>71</height>
+      <x>340</x>
+      <y>160</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -232,10 +232,10 @@
    <widget class="QPushButton" name="btu9">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>140</y>
-      <width>111</width>
-      <height>71</height>
+      <x>610</x>
+      <y>170</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -274,10 +274,10 @@
    <widget class="QPushButton" name="btu6">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>610</x>
       <y>50</y>
-      <width>111</width>
-      <height>71</height>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -316,10 +316,10 @@
    <widget class="QPushButton" name="btu10">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>140</y>
-      <width>111</width>
-      <height>71</height>
+      <x>70</x>
+      <y>270</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -358,10 +358,10 @@
    <widget class="QPushButton" name="btu7">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>50</y>
-      <width>121</width>
-      <height>71</height>
+      <x>70</x>
+      <y>160</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -400,10 +400,10 @@
    <widget class="QPushButton" name="btu11">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>140</y>
-      <width>121</width>
-      <height>71</height>
+      <x>340</x>
+      <y>280</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -442,10 +442,10 @@
    <widget class="QPushButton" name="btu12">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>220</y>
-      <width>111</width>
-      <height>71</height>
+      <x>610</x>
+      <y>280</y>
+      <width>131</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -479,300 +479,6 @@
     </property>
     <property name="text">
      <string>第九关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu16">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>300</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十三关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu13">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>220</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十个</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu19">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>300</y>
-      <width>121</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十六关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu14">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>220</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十一关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu18">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>300</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十五关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu15">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>220</y>
-      <width>121</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十二关</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btu17">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>300</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft PhagsPa</family>
-      <pointsize>16</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-    /* 分层背景：图片在下，渐变在上 */
-    background-image: url(:/res/1.jpg),
-                     qradialgradient(spread:repeat,
-                                    cx:0.5, cy:0.5, radius:0.077,
-                                    fx:0.5, fy:0.5,
-                                    stop:0 rgba(0, 169, 255, 58),
-                                    stop:0.5 rgba(0, 0, 0, 58),
-                                    stop:1 rgba(0, 169, 255, 58));
-    
-    /* 背景混合模式 */
-    background-blend-mode: overlay;
-    
-    /* 备用背景色 */
-    background-color: rgb(85, 170, 127);
-    
-    /* 字体设置 */
-    font: 16pt &quot;Microsoft PhagsPa&quot;;
-}</string>
-    </property>
-    <property name="text">
-     <string>第十四关</string>
     </property>
    </widget>
   </widget>

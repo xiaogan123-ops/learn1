@@ -3,8 +3,6 @@
         <file>res/background.jpg</file>
         <file>res/a.jpg</file>
         <file>res/abc.png</file>
-        <file>res/BOX.png</file>
-        <file>res/BOX_DONE.png</file>
         <file>res/destination.jpg</file>
         <file>res/ground.jpg</file>
         <file>res/miku.png</file>
@@ -27,26 +25,19 @@
         <file>res/sound_1.jpg</file>
         <file>res/5.jpg</file>
         <file>res/6.png</file>
-        <file>res/Angel.jpg</file>
-        <file>res/banana.jpg</file>
-        <file>res/big_devil.jpg</file>
-        <file>res/Big_Eyes_Monster.jpg</file>
-        <file>res/Big_monster.jpg</file>
-        <file>res/Demon.jpg</file>
-        <file>res/dragon_baby.jpg</file>
-        <file>res/enchanter.jpg</file>
-        <file>res/Fat_Monster.jpg</file>
-        <file>res/Hoppy_Monster1.jpg</file>
-        <file>res/Hoppy_Monster2.jpg</file>
-        <file>res/Malphite.jpg</file>
         <file>res/props.jpg</file>
-        <file>res/protector.jpg</file>
-        <file>res/robot.jpg</file>
         <file>res/Snorter.jpg</file>
         <file>res/debris.jpg</file>
         <file>res/wooden_kite.jpg</file>
         <file>res/role.jpg</file>
         <file>res/bird.jpg</file>
+        <file>res/book.jpg</file>
+        <file>res/shoe.jpg</file>
+        <file>res/7.jpg</file>
+        <file>res/8.jpg</file>
+        <file>res/9.jpg</file>
+        <file>res/10.jpg</file>
+        <file>res/11.jpg</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/adio"/>

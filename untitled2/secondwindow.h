@@ -21,7 +21,7 @@ public:
 
     ~SecondWindow();
     void updateLevelButtons();
-    // bool eventFilter(QObject* obj, QEvent* event) ;
+    bool eventFilter(QObject* obj, QEvent* event) ;
 
 
 protected:
@@ -36,7 +36,7 @@ private slots:
 private:
     void updateStoryText();
 protected:
-    // void showEvent(QShowEvent *event) override; // 重写显示事件
+     void showEvent(QShowEvent *event) override; // 重写显示事件
 
 private:
     void resetStory(); // 新增重置函数

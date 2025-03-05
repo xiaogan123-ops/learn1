@@ -34,16 +34,17 @@ Widget::Widget(QWidget *parent)
     ,showVictory(false)
     ,victoryScale(0.0)  // 胜利动画缩放比例
     , victorySoundPlayed(false) // 初始化标志
-    ,failureScale(0.0)
-    ,mMedia_4(new QMediaPlayer(this))    // 媒体播放器
+    ,mMedia_4(new QMediaPlayer(this)) // 媒体播放器
     ,audioOutput_4(new QAudioOutput(this))// 音频输出
-    ,settingwindow(settingWindow::instance(this))
     ,isPropCollected(false)
+    ,failureScale(0.0)
+    ,settingwindow(settingWindow::instance(this))
     , m_hasBanana(false)
     , m_isSpeedBoosted(false)
     , m_stepSize(1)
     ,gameFailed(false)
     ,currentLevel(0)
+    ,is_bookCollected(false)
 {
     ui->setupUi(this);
 
@@ -96,53 +97,15 @@ Widget::Widget(QWidget *parent)
     connect(ui->btu2, &QPushButton::clicked, this, &Widget::onAutoPathButtonClicked);
     connect(ui->btu3, &QPushButton::clicked, this, &Widget::onNoSolutionButtonClicked);
 
-
+    //怪物
     monsterImageMap.insert({5, 0}, ":/res/bird.jpg");
 
-    //大眼怪
-    monsterImageMap.insert({6, 0}, ":/res/Big_Eyes_Monster.jpg");
+    monsterImageMap.insert({6, 0}, ":/res/7.jpg");
+    monsterImageMap.insert({7, 0}, ":/res/8.jpg");
 
-    //胖怪兽
-    monsterImageMap.insert({7, 0}, ":/res/Fat_Monster.jpg");
-
-    //会喷火的龙宝宝
-    monsterImageMap.insert({8, 0}, ":/res/dragon_baby.jpg");
-
-    monsterImageMap.insert({9, 0}, ":/res/Hoppy_Monster1.jpg"); // 红色跳跳怪
-    monsterImageMap.insert({9, 1}, ":/res/Hoppy_Monster2.jpg");// 蓝色跳跳怪
-
-    // 第10关天使和恶魔
-    monsterImageMap.insert({10,0}, ":/res/Angel.jpg");
-    monsterImageMap.insert({10,1}, ":/res/Demon.jpg");
-
-    //机器人
-    monsterImageMap.insert({11,0}, ":/res/robot.jpg");
-    monsterImageMap.insert({11,1}, ":/res/robot.jpg");
-
-    //魔法师
-    monsterImageMap.insert({12,0}, ":/res/enchanter.jpg");
-    monsterImageMap.insert({12,1}, ":/res/enchanter.jpg");
-
-    //大怪兽
-    monsterImageMap.insert({13,0}, ":/res/Big_monster.jpg");
-    monsterImageMap.insert({13,1}, ":/res/Big_monster.jpg");
-    monsterImageMap.insert({13,2}, ":/res/Big_monster.jpg");
-
-    //守卫
-    monsterImageMap.insert({14,0}, ":/res/protector.jpg");
-    monsterImageMap.insert({14,1}, ":/res/protector.jpg");
-    monsterImageMap.insert({14,2}, ":/res/protector.jpg");
-
-    //石头人
-    monsterImageMap.insert({15,0}, ":/res/Malphite.jpg");
-    monsterImageMap.insert({15,1}, ":/res/Malphite.jpg");
-    monsterImageMap.insert({15,2}, ":/res/Malphite.jpg");
-
-    //大魔王
-    monsterImageMap.insert({16,0}, ":/res/big_devil.jpg");
-    monsterImageMap.insert({16,1}, ":/res/big_devil.jpg");
-    monsterImageMap.insert({16,2}, ":/res/big_devil.jpg");
-
+    monsterImageMap.insert({8, 0}, ":/res/8.jpg");
+    monsterImageMap.insert({9, 0}, ":/res/9.jpg");
+    monsterImageMap.insert({9, 1}, ":/res/9.jpg");
 
     monsterTimer = new QTimer(this);
     connect(monsterTimer, &QTimer::timeout, this, &Widget::moveMonsters);
@@ -202,77 +165,6 @@ void Widget::setupMonstersForLevel(int level) {
         // 第二个跳跳怪（蓝色）
         m_monsters.append(new Monster());
         m_monsters.last()->setPatrolRoute({{15,11}, {17,11}});
-        break;
-    }
-    case 10: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{7,1}, {9,1}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{13,11}, {15,11}});
-        break;
-    }
-    case 11: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{17,2}, {17,4}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{9,10}, {9,12}});
-        break;
-    }
-    case 12: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{1,21}, {3,21}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{7,1}, {9,1}});
-        break;
-    }
-    case 13: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{19,14}, {21,14}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{9,0}, {11,0}});
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{0,9}, {0,11}});
-        break;
-    }
-    case 14: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{23,18}, {23,20}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{27,8}, {27,10}});
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{18,5}, {20,5}});
-        break;
-    }
-    case 15: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{0,22}, {0,24}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{1,1}, {3,1}});
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{30,8}, {30,10}});
-        break;
-    }
-    case 16: {
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{24,2}, {26,2}});
-
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{17,0}, {19,0}});
-        m_monsters.append(new Monster());
-        m_monsters.last()->setPatrolRoute({{20,15}, {20,17}});
         break;
     }
     }
@@ -409,7 +301,8 @@ void Widget::onBackButtonClicked()
 
     isPropCollected = false;
     m_hasBanana = false;
-
+    m_stepSize=1;
+    gameFailed=false;
     mMedia_2->play(); // 播放按钮音效
 
     if (mMedia) {
@@ -449,20 +342,31 @@ void Widget::paintEvent(QPaintEvent *event)
         mpmap->paint(&painter, QPoint(0, 0));
     }
 
-
-    if(currentLevel == 3 && !isPropCollected){
+    if(currentLevel==1&&!is_bookCollected){
         int cellWidth = 600 / mazeCols;
         int cellHeight = 600 / mazeRows;
         painter.drawImage(QRect(
-                              1 * cellWidth,
-                              13 * cellHeight,
+                             m_book.y() * cellWidth,
+                             m_book.x()* cellHeight,
                               cellWidth,
                               cellHeight),
-                          QImage(":/res/props.jpg"));
+                          QImage(":/res/book.jpg"));
     }
 
 
-    if((currentLevel == 6 ||currentLevel==10||currentLevel==11||currentLevel==12||currentLevel==14||currentLevel==16)&& m_hasBanana){
+    if((currentLevel == 3||currentLevel==4) && !isPropCollected){
+        int cellWidth = 600 / mazeCols;
+        int cellHeight = 600 / mazeRows;
+        painter.drawImage(QRect(
+                              m_props.y() * cellWidth,
+                              m_props.x()* cellHeight,
+                              cellWidth,
+                              cellHeight),
+                          QImage(":/res/11.jpg"));
+    }
+
+
+    if((currentLevel == 6||currentLevel==2||currentLevel==8||currentLevel==9||currentLevel==4||currentLevel==7)&& m_hasBanana){
         int cellWidth = 600 / mazeCols;
         int cellHeight = 600 / mazeRows;
         painter.drawImage(QRect(
@@ -470,10 +374,10 @@ void Widget::paintEvent(QPaintEvent *event)
                               m_bananaPos.x() * cellHeight,
                               cellWidth,
                               cellHeight),
-                          QImage(":/res/banana.jpg"));
+                          QImage(":/res/shoe.jpg"));
     }
 
-    if ((currentLevel == 2 || currentLevel == 8 || currentLevel == 14) &&
+    if ((currentLevel == 2 || currentLevel == 8 ||currentLevel==7) &&
         !fragmentCollectedInLevel.value(currentLevel, false) &&
         m_fragmentPos != QPoint(-1, -1))
     {
@@ -487,7 +391,7 @@ void Widget::paintEvent(QPaintEvent *event)
                           QImage(":/res/debris.jpg"));
     }
 
-    if(currentLevel == 3 && !m_hasTriggeredKite){
+    if((currentLevel == 3||currentLevel==5||currentLevel==9) && !m_hasTriggeredKite){
         int cellWidth = 600 / mazeCols;
         int cellHeight = 600 / mazeRows;
         painter.drawImage(QRect(
@@ -508,6 +412,8 @@ void Widget::paintEvent(QPaintEvent *event)
 
 
 
+
+
     // 检查胜利状态
     if (mrole && mrole->row() == endX && mrole->col() == endY) {
         qDebug() << "到达终点! 角色位置("
@@ -516,9 +422,9 @@ void Widget::paintEvent(QPaintEvent *event)
 
 
         // 先处理特殊结局
-        if (currentLevel == 16 && fragmentsCollected >= 3 && !specialEndingShown) {
+        if (currentLevel == 9 && fragmentsCollected >= 3 && !specialEndingShown) {
             specialEndingShown = true;
-            gameWon = true;  // 提前锁定游戏状态
+            gameWon = true;  // 锁定游戏状态
 
             // 停止所有游戏逻辑
             if(mtime) mtime->stop();
@@ -530,9 +436,21 @@ void Widget::paintEvent(QPaintEvent *event)
                             << "天志传承"
                             << "周身机关突然停止运转，墙上浮现古篆："
                             << "「兼爱众生，可承墨守」");
-            return;  // 提前返回避免触发常规胜利逻辑
+            return;
+        } else if (currentLevel==9&& fragmentsCollected < 3 && !specialEndingShown) {
+            // 碎片不足的失败情况
+            specialEndingShown = true;
+            gameWon = true;
+            if(mtime) mtime->stop();
+            if(monsterTimer) monsterTimer->stop();
+            victoryTimer->stop();
+            showLevelDialog(QStringList()
+                            << "墨守未成"
+                            << "机关发出低沉轰鸣，墙上篆文渐显："
+                            << "「非攻碎片未齐，难承天志传承」");
+            return;
         }
-        if (!gameWon) { // 添加未胜利状态检查
+        if (!gameWon) { //未胜利状态检查
             levelComplete();
             gameWon = true;
             showVictory = true;
@@ -558,7 +476,7 @@ void Widget::paintEvent(QPaintEvent *event)
 
         QPixmap victoryPixmap("://res/2.jpg");
         if (!victoryPixmap.isNull()) {
-            int baseWidth = 200;  // 适当放大基础尺寸
+            int baseWidth = 200;
             int baseHeight = 200;
 
             qDebug() << "Drawing victory image at scale:" << victoryScale;
@@ -619,6 +537,8 @@ void Widget::paintEvent(QPaintEvent *event)
     }
 
 
+
+
     // 绘制路径（排除角色当前位置）
     if (showingPath && !solutionPath.isEmpty()) {
 
@@ -647,7 +567,7 @@ void Widget::paintEvent(QPaintEvent *event)
 
 void Widget::keyPressEvent(QKeyEvent *event)
 {
-    if (!mrole || gameWon || isDialogActive||gameFailed) return; // 新增isDialogActive检查
+    if (!mrole || gameWon || isDialogActive||gameFailed) return;
 
 
     int dRow = 0, dCol = 0;
@@ -665,7 +585,8 @@ void Widget::keyPressEvent(QKeyEvent *event)
     default: QWidget::keyPressEvent(event); return;
     }
 
-    if ((currentLevel == 2 || currentLevel == 8 || currentLevel == 14) &&
+    //碎片
+    if ((currentLevel == 2 || currentLevel == 8||currentLevel==7 ) &&
         !fragmentCollectedInLevel[currentLevel] &&
         mrole->row() == m_fragmentPos.x() &&
         mrole->col() == m_fragmentPos.y())
@@ -683,7 +604,8 @@ void Widget::keyPressEvent(QKeyEvent *event)
         showLevelDialog(QStringList()
                         << "墨家秘宝"
                         << "获得机关术残篇"
-                        << "此物似乎记载着某种上古机关的奥秘...");
+                        << "此物似乎记载着某种上古机关的奥秘..."
+                        <<"收集完善者便可得到终极机关术");
 
         // 强制界面刷新
         update();
@@ -693,9 +615,74 @@ void Widget::keyPressEvent(QKeyEvent *event)
         return;  // 立即返回避免后续移动
     }
 
+    //书竹
+    if(currentLevel==1&&!is_bookCollected&&mrole->row() == m_book.x() &&
+        mrole->col() == m_book.y()){
 
+        is_bookCollected=true;
+
+        // 立即暂停游戏逻辑
+        gameWon = true;  // 临时锁定游戏
+        if(monsterTimer) monsterTimer->stop();
+        if(mtime) mtime->stop();
+
+        // 显示对话框
+        showLevelDialog(QStringList()
+                    << "「书竹·机关传承」"  // 物品名称
+                    << "传说集齐墨家机关残篇者，可得窥\n"  // 描述文本
+                    "上古机关术之精髓。此竹简隐现玄光，\n"
+                    "似与《墨经》残卷存有微妙感应......");
+
+        // 强制界面刷新
+        update();
+        QApplication::processEvents();
+
+
+    }
+
+
+    if(currentLevel==5&&is_monster_n &&((mrole->row() == m_monster_1.x() &&
+                                               mrole->col() == m_monster_1.y())||(mrole->row()==m_montser_tow.x()&&mrole->col()==m_montser_tow.y()))){
+
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+              << "此兽通体嵌璇玑玉衡，三百六十齿咬合无隙"
+              << "其怒时械瞳迸朱砂火，铜爪裂地三丈！");
+        is_monster_n=false;
+        return;
+    }else if(currentLevel==6&&is_monster_n&&mrole->row() == m_monster_1.x() &&
+               mrole->col() == m_monster_1.y()){
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+          << "此兽开阖似饕餮吞日，足踏之处"
+          << "地涌黄泉阴火，墨绳丈量生死界");
+        is_monster_n=false;
+        return;
+    }else if(currentLevel==7&&is_monster_n&&mrole->row() == m_monster_1.x() &&
+               mrole->col() == m_monster_1.y()){
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+                        <<"《墨子·备城门》有载：『轒辒悬陴，机发连弩，百步绝杀』"
+                        <<"此玄铁所铸机关人，瞳嵌夔纹水玉，三百六十关节暗藏璇玑轮轴"
+                        <<"其掌中飞鸢匣可弹射九连星弩，恰合《考工记》『轮辐三十，以象日月』之数！");
+        is_monster_n=false;
+        return;
+    }else if(currentLevel==9&&is_monster_n&&mrole->row() == m_monster_1.x() &&
+               mrole->col() == m_monster_1.y()){
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+                        << "《天工开物·锤锻篇》言：『凡铁牛镇水，必取阳燧方位』"
+                        <<"眼前巨兽乃熔铸二十八宿星图，牛角嵌河图洛书，四蹄暗合地维之道"
+                        <<"观其脊椎七十二环相扣，正应《唐会要》所载『黄河铁牛，每环承千钧』的液压传动之理！");
+        is_monster_n=false;
+        return;
+    }
     // 检查是否吃到香蕉皮
-    if((currentLevel == 6||currentLevel==10||currentLevel==11||currentLevel==12||currentLevel==14||currentLevel==16) && m_hasBanana &&
+    if((currentLevel == 6||currentLevel==2||currentLevel==8||currentLevel==9||currentLevel==4||currentLevel==7) && m_hasBanana &&
         mrole->row() == m_bananaPos.x() &&
         mrole->col() == m_bananaPos.y())
     {
@@ -704,9 +691,20 @@ void Widget::keyPressEvent(QKeyEvent *event)
         m_isSpeedBoosted = true;
         m_stepSize = 2; // 加速时每次移动2格
         m_speedBoostTimer->start(5000); // 加速持续5秒
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+                        << "转重速履"
+                        << "铜足踏火碾寒霜"
+                        << "啮铁衔风自稳航"
+                        <<"缩地何须借仙术"
+                        <<"履下玄黄藏阴阳");
+        return;
+
     }
 
-    if(currentLevel == 3 &&
+    //木鸢
+    if((currentLevel == 3||currentLevel==5||currentLevel==9) &&
         mrole->row() == m_woodenKitePos.x() &&
         mrole->col() == m_woodenKitePos.y() &&
         !m_hasTriggeredKite)
@@ -716,7 +714,7 @@ void Widget::keyPressEvent(QKeyEvent *event)
     }
 
 
-    if(currentLevel==6||currentLevel==10||currentLevel==11||currentLevel==12||currentLevel==14||currentLevel==16){
+    if(currentLevel==6||currentLevel==2||currentLevel==8||currentLevel==9||currentLevel==4||currentLevel==7){
 
         for(int i=0; i<m_stepSize; i++){
             int newRow = mrole->row() + dRow;
@@ -749,12 +747,23 @@ void Widget::keyPressEvent(QKeyEvent *event)
         }
     }
 
-    if (currentLevel == 3 && !isPropCollected &&
-        mrole->row() == 13 && mrole->col() == 1)
+    if( (currentLevel == 3||currentLevel==4) && !isPropCollected &&
+        ((mrole->row() == m_props.rx() && mrole->col() == m_props.y())||(mrole->row() == 13 && mrole->col()==1)))
     {
+
+        if(mtime) mtime->stop();
+        if(monsterTimer) monsterTimer->stop();
+        showLevelDialog(QStringList()
+                        << "《殷墟甲骨·舆图》"
+                        << "灼龟甲契兽骨，朱砂纹路间藏星斗排列："
+                        << "『癸巳卜，贞：东方析木起连隼，西雉于雷泽』"
+                        << "此乃先王占风卜地势之图，暗合二十八宿分野！"
+                        << "若以墨家璇玑尺测算，可破译三千年前的地脉机关！"
+                        );
+
         isPropCollected = true;
-        qDebug()<<"abc";
-        onAutoPathButtonClicked();
+         onAutoPathButtonClicked();
+
         return;
     }
 
@@ -766,6 +775,7 @@ void Widget::checkMonsterCollisions()
         if(monster->row() == mrole->row() &&
             monster->col() == mrole->col())
         {
+
             gameFailed=true;
             handleGameFailure();
             return;
@@ -880,54 +890,78 @@ void Widget::setMaze(int level, int rows, int cols, int startX, int startY, int 
 
     resetGame1(level);  // 传递关卡号
 
-    if(level==1){
-        qDebug() << "1...";
-    }
-    if(level==2){
-        qDebug() << "2...";
-    }
     if (!mpmap) return;
 
     if(level == 6){
         m_bananaPos = QPoint(1, 12); // 设置香蕉皮位置
         m_hasBanana = true;
-    }else if(level==10){
-         m_bananaPos = QPoint(16, 10);
+    }else if(level==2){
+        m_bananaPos = QPoint(0, 4);
         m_hasBanana = true;
-    }else if(level==11){
-        m_bananaPos = QPoint(3, 19);
+    }else if(level==8){
+        m_bananaPos = QPoint(5, 19);
         m_hasBanana = true;
-    }else if(level==12){
-        m_bananaPos = QPoint(12, 17);
+    }else if(level==9){
+        m_bananaPos = QPoint(0, 19);
         m_hasBanana = true;
-    }else if(level==14){
-        m_bananaPos = QPoint(9, 14);
+    }else if(level==4){
+        m_bananaPos = QPoint(14, 16);
         m_hasBanana = true;
-    }else if(level==16){
-        m_bananaPos = QPoint(16, 15);
+    }else if(level==7){
+        m_bananaPos = QPoint(7, 12);
         m_hasBanana = true;
-    }else {
-        m_hasBanana = false;
     }
-
 
     m_fragmentPos = QPoint(-1, -1);
     if (level == 2) {
-        m_fragmentPos = QPoint(6, 3);  // 根据实际迷宫坐标调整
+        m_fragmentPos = QPoint(6, 3);
     } else if (level == 8) {
         m_fragmentPos = QPoint(1, 9);
-    } else if (level == 14) {
-        m_fragmentPos = QPoint(25, 15);
+    }else if(level==7){
+         m_fragmentPos = QPoint(15, 2);
     }
 
     if(currentLevel == 3){
-        m_woodenKitePos = QPoint(13, 7);  // 木鸢地板位置（根据实际迷宫调整）
+        m_woodenKitePos = QPoint(13, 7);  // 木鸢地板位置
         m_transferTarget = QPoint(7, 1);  // 传送目标位置
         m_hasTriggeredKite = false;       // 重置触发状态
-    }else if(currentLevel==15){
-        m_woodenKitePos = QPoint(13, 7);  // 木鸢地板位置（根据实际迷宫调整）
-        m_transferTarget = QPoint(7, 1);  // 传送目标位置
-        m_hasTriggeredKite = false;       // 重置触发状态
+    }else if(currentLevel==5){
+        m_woodenKitePos = QPoint(14, 0);
+        m_transferTarget = QPoint(12, 16);
+        m_hasTriggeredKite = false;
+    }else if(currentLevel==9){
+        m_woodenKitePos = QPoint(6, 1);
+        m_transferTarget = QPoint(14, 17);
+        m_hasTriggeredKite = false;
+    }
+
+    if(level==3){
+        m_props=QPoint(13,1);
+        isPropCollected =false;
+    }else if(level==4){
+         m_props=QPoint(3,8);
+        isPropCollected =false;
+    }
+
+    if(level==1){
+        m_book=QPoint(1,11);
+        is_bookCollected=false;
+    }
+
+    //触发怪物对话
+    if(level==5){
+        m_monster_1=QPoint(10,12);
+        m_montser_tow=QPoint(10,16);
+        is_monster_n=true;
+    }else if(level==6){
+         m_monster_1=QPoint(15,7);
+        is_monster_n=true;
+    }else if(level==7){
+        m_monster_1=QPoint(11,9);
+        is_monster_n=true;
+    }else if(level==9){
+        m_monster_1=QPoint(12,3);
+        is_monster_n=true;
     }
 
 
@@ -949,8 +983,8 @@ void Widget::resetGame1(int level) {
     isDialogActive = false;
     gameWon = false;
 
-    isPropCollected = false;  // 重置第三关道具状态
-    m_hasBanana = false;      // 重置第六关香蕉状态
+    isPropCollected = false;  // 重置道具状态
+    m_hasBanana = false;      // 重置香蕉状态
      specialEndingShown = false;
 
     setupMonstersForLevel(level); // 初始化怪物
@@ -963,16 +997,18 @@ void Widget::resetGame1(int level) {
         m_bananaPos = QPoint(1, 12); // 根据实际迷宫调整坐标
         m_isSpeedBoosted = false;
         m_stepSize = 1;
-    }else{
+    }else {
         m_hasBanana = false;
     }
 
-    if (level == 2 || level == 8 || level == 14) {
+    if (level == 2 || level == 8||level==7) {
         // 仅当从未收集过时才重置
         if (!fragmentCollectedInLevel.contains(level)) {
             fragmentCollectedInLevel[level] = false;
         }
     }
+
+
 
 
     // 动态生成文件名
@@ -1088,10 +1124,7 @@ bool Widget::findPathDFS(QList<QPoint>& path) {
 
 void Widget::levelComplete() {
     int nextLevel = currentLevel + 1;
-    if(currentLevel==1){
-        nextLevel = currentLevel + 1;
-    }
-    if (nextLevel <= 17) {
+    if (nextLevel <= 9) {
         emit levelUnlocked(nextLevel); // 直接发射信号，由SecondWindow处理
     }
 }
@@ -1109,6 +1142,8 @@ void Widget::handleGameFailure()
     failureScale = 0.0;
     failure_soundPlayed_2 = false;
     failureTimer_2->start(50);
+
+    gameFailed=true;//role不能移动
 
     // 播放失败音效
     if (!failure_soundPlayed_2) {
@@ -1139,7 +1174,14 @@ void Widget::showLevelDialog(const QStringList &messages)
     // 设置对话框激活状态
     isDialogActive = true;
 
-    currentDialog = new CustomDialog(messages, this);
+    QStringList styledMessages = messages;
+    if (!styledMessages.isEmpty()) {
+        // 为标题添加红色和粗体样式
+        styledMessages[0] = QString("<span style='color: #FF3333; font-weight: bold;'>%1</span>")
+                                .arg(styledMessages[0]);
+    }
+
+     currentDialog = new CustomDialog(styledMessages, this);
     if (monsterTimer && monsterTimer->isActive()) {
         monsterTimer->stop();
     }
@@ -1162,7 +1204,7 @@ void Widget::showLevelDialog(const QStringList &messages)
     connect(currentDialog, &CustomDialog::dialogFinished, this, [=](){
 
 
-        if(currentLevel == 16 && fragmentsCollected >= 3) {
+        if(currentLevel == 9 && fragmentsCollected >= 3) {
             levelComplete();  // 延迟执行胜利逻辑
         } else {
             gameWon = false;  // 解除锁定
@@ -1206,6 +1248,14 @@ void Widget::showLevelDialog(const QStringList &messages)
             mMedia_3->play();
         });
     }
+    if (messages.contains("墨守未成")) {
+        connect(currentDialog, &CustomDialog::dialogFinished, this, [=](){
+            showVictory = true;
+            victoryScale = 0.0;
+            victoryTimer->start(50);
+            mMedia_3->play();
+        });
+    }
 
     // 暂停游戏计时
     if(mtime) mtime->stop();
@@ -1214,105 +1264,64 @@ void Widget::showLevelDialog(const QStringList &messages)
 }
 void Widget::showLevelDialog(const QString &title, const QString &text1, const QString &text2)
 {
-    showLevelDialog(QStringList{title, text1, text2});
+     showLevelDialog(QStringList{title, text1, text2});
 }
 void Widget::initLevelDialogs()
 {
     levelDialogs[1] = {
-        "墨家木鸢阵",
-        "齿轮传动指方向",
-        "顺铜羽转动方向走！"
+        "墨鸢枢机阵",
+        "铜牙轮啮合定枢杼", // 源自《墨子·备城门》齿轮传动系统
+        "循枢杼铜羽旋向行进！" // 铜羽是古代齿轮定位装置
     };
 
     levelDialogs[2] = {
-        "千斤悬门关",
-        "地砖触发重力机关",
-        "踩实三块青砖开门！"
+        "悬衡石门阵",
+        "地栿承重启天衡机关", // "天衡"为古代衡器装置
+        "踏稳三块悬权石板！" // "悬权"出自《墨子》的平衡称重概念
     };
 
     levelDialogs[3] = {
-        "九宫连弩阵",
-        "铜镜反射可见安全区",
-        "只踏有红光的地砖！"
+        "璇玑弩机廊",
+        "阳燧聚光显生门方位", // 阳燧是古代凹面铜镜取火器
+        "唯踏璇光映照之枨！" // 枨指古代门槛/界石
     };
 
     levelDialogs[4] = {
-        "阴阳翻板道",
-        "单侧承重触发陷阱",
-        "紧贴左侧墙壁前进！"
+        "欹器暗道关",
+        "虚则欹满则覆守其中", // 引用《荀子》记载的欹器特性
+        "沿欹器中正线潜行！"
     };
 
     levelDialogs[5] = {
-        "滑轮飞索桥",
-        "拉左绳降桥右绳固定",
-        "先左后右快速通过！"
+        "云梯桔槔桥", // 桔槔是《墨经》记载的杠杆提水工具
+        "天衡地衡须交相为用", // 引自《墨经》杠杆原理
+        "先降地衡再固天衡！"
     };
 
     levelDialogs[6] = {
-        "地听音室",
-        "陶瓮回声辨死路",
-        "往声音最弱处走！"
+        "候气听瓮室", // 源自古代用陶瓮监听地道的技术
+        "五音相生辨虚实", // 宫商角徵羽五声音阶
+        "择羽音微弱处遁形！"
     };
 
     levelDialogs[7] = {
-        "八方转射台",
-        "弩机每转三圈停一次",
-        "趁停转时冲过通道！"
+        "参连弩机枢", // 三矢连发谓之参连
+        "勾三股四弦五定弩向", // 引用《周髀算经》勾股定理
+        "弦音三停间隙疾行！" // 三停指弩机转动周期
     };
 
     levelDialogs[8] = {
-        "燧石取火关",
-        "摩擦生火照通路",
-        "快速转动木钻点燃火把！"
+        "燧镜阳燎关", // 取自《淮南子》"阳燧见日则燃为火"
+        "金燧木燧须得法相生", // 分金属凹面镜和木钻取火两种
+        "急旋柘木燧取离火！" // 离卦象征火
     };
 
     levelDialogs[9] = {
-        "四衡轭锁阵",
-        "杠杆需按顺序启动",
-        "先抬右杆再推左杆！"
+        "天机锁钥阵", // 出自《鲁班书》机关锁记载
+        "四维相制八极相生", // 源自《墨经》空间力学概念
+        "先启地维再解天纲！" // 天地四维的机关联动
     };
 
-    levelDialogs[10] = {
-        "虹吸水机关",
-        "水位下降显通路",
-        "转三圈铜阀放水！"
-    };
-
-    levelDialogs[11] = {
-        "小孔成像关",
-        "调整竹管角度",
-        "让光斑指向出口！"
-    };
-
-    levelDialogs[12] = {
-        "木牛载具阵",
-        "推动粮草车开路",
-        "沿车辙痕迹前进！"
-    };
-
-    levelDialogs[13] = {
-        "鼓风熔炉阵",
-        "交替拉动风箱",
-        "保持火焰不灭才能见路！"
-    };
-
-    levelDialogs[14] = {
-        "雷音控石阵",
-        "对东墙喊声改路线",
-        "喊完立刻向右跑！"
-    };
-
-    levelDialogs[15] = {
-        "最终防御阵",
-        "所有机关同时激活",
-        "不触发任何攻击直冲终点！"
-    };
-
-    levelDialogs[16] = {
-        "墨守圣殿",
-        "机关因和平之心停转",
-        "光明正大走向星辰！"
-    };
 }
 void Widget::moveMonsters() {
     foreach (Monster* monster, m_monsters) {
@@ -1334,7 +1343,8 @@ void Widget::resetFragmentStates()
     fragmentCollectedInLevel.clear();
     fragmentCollectedInLevel[2] = false;
     fragmentCollectedInLevel[8] = false;
-    fragmentCollectedInLevel[14] = false;
+    fragmentCollectedInLevel[7]=false;
+
 }
 void Widget::triggerWoodenKiteEvent()
 {
